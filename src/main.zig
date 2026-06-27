@@ -3,8 +3,15 @@ const Io = std.Io;
 
 const zig_wordle = @import("zig_wordle");
 
-pub fn main() void {
+pub fn main(init: std.process.Init) !void {
     std.debug.print("Hello world!\n", .{});
+    var buffer: [100]u8 = undefined;
+    var reader = std.Io.File.stdin().reader(init.io, &buffer);
+
+    const input = try reader.interface.takeDelimiter('\n');
+    if (input) |i| {
+        std.debug.print("{s}", .{i});
+    }
 }
 //pub fn main(init: std.process.Init) !void {
 //    // Prints to stderr, unbuffered, ignoring potential errors.
