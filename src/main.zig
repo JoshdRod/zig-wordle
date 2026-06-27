@@ -4,6 +4,7 @@ const Io = std.Io;
 const zig_wordle = @import("zig_wordle");
 
 pub fn main(init: std.process.Init) !void {
+    const word = "HORSE";
     std.debug.print("Hello world!\n", .{});
     var buffer: [100]u8 = undefined;
     var reader = std.Io.File.stdin().reader(init.io, &buffer);
